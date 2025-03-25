@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Map_Script : MonoBehaviour
+public class Fly_Script : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
