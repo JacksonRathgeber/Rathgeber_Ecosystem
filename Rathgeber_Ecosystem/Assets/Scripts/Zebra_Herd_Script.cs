@@ -29,7 +29,7 @@ public class Zebra_Herd_Script : MonoBehaviour
         Move();
     }
 
-    public void Move()
+    private void Move()
     {
         float rand_val = Random.value;
 

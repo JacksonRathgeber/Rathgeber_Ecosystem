@@ -59,6 +59,13 @@ public class Zebra_Script : MonoBehaviour
     {   
         Debug.DrawRay(this.transform.position, transform.up * 20);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 5, Vector2.up);
+
+        
+        if(hit && hit.collider.gameObject.tag == "Lion")
+        {
+            Debug.Log("A Zebra spotted a lion!");
+        }
+     
     }
 }

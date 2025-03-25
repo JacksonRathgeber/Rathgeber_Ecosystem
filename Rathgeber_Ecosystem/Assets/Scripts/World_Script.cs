@@ -36,9 +36,11 @@ public class World_Script : MonoBehaviour
     - Swarm-size-based lifespan + death (?)
     
     TRANSFERABLE:
+    - Crank numbers up
     - Sex update
     - Respawn if group wipe
     - Lifespan framework
     - Eyesight + detection
+    - Constrain herds to bounding box
     */
 }
