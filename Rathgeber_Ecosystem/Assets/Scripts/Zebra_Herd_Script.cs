@@ -3,14 +3,19 @@ using UnityEngine;
 public class Zebra_Herd_Script : MonoBehaviour
 {
     public GameObject zebra;
+    public GameObject lion_pack;
     public float move_dist;
     public float move_chance;
     public float lerp_amount;
+    public int run_speed = 40;
     public int min;
     public int max;
     public int spawn_range;
 
     public Vector2 destination;
+
+    public enum State { Chill, Fleeing, Mating }
+    public State state;
 
     void Awake()
     {
@@ -20,7 +25,10 @@ public class Zebra_Herd_Script : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        lion_pack = GameObject.FindWithTag("Pack");
+
         destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
+        destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
     }
 
     // Update is called once per frame
@@ -33,13 +41,43 @@ public class Zebra_Herd_Script : MonoBehaviour
     {
         float rand_val = Random.value;
 
-        if(rand_val > move_chance)
+        switch (state)
         {
-            destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
-            //Debug.Log(rand_val);
-        }
+            case State.Chill:
 
-        this.transform.position = Vector2.Lerp(this.transform.position, destination, lerp_amount);
+                if (rand_val > move_chance)
+                {
+                    destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
+                    destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
+                }
+
+                this.transform.position = Vector2.Lerp(this.transform.position, destination, lerp_amount);
+
+                break;
+
+            case State.Fleeing:
+
+                if (rand_val > 1 - ((1-move_chance) * 4))
+                {
+                    destination = Vector2.MoveTowards(transform.position, lion_pack.transform.position, -run_speed);
+                    destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
+                }
+
+                if (rand_val > move_chance)
+                {
+                    destination = Vector2.Perpendicular(Vector2.MoveTowards(transform.position, lion_pack.transform.position, -run_speed));
+                }
+
+                if (rand_val < 1 - move_chance)
+                {
+                    destination = Vector2.Perpendicular(Vector2.MoveTowards(transform.position, lion_pack.transform.position, run_speed));
+                }
+
+                this.transform.position = Vector2.Lerp(this.transform.position, destination, lerp_amount);
+
+
+                break;
+        }
     }
 
     public void SpawnZebras()

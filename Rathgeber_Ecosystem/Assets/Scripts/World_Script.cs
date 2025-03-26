@@ -19,12 +19,10 @@ public class World_Script : MonoBehaviour
     TO DO LIST:
     
     ZEBRAS:
-    - Lion detection with layer masking
     - Fleeing (herd + individuals) and re-calm condition
     - Time-based lifespan + death
 
     LIONS:
-    - Zebra detection with layer masking
     - Chasing (pack + individuals) and re-calm condition
     - What happens when lion catches zebra?
     - Hunger-based lifespan + death

@@ -12,6 +12,8 @@ public class Lion_Pack_Script : MonoBehaviour
 
     public Vector2 destination;
 
+    public enum State { Chill, Hunting, Mating }
+
     void Awake()
     {
         SpawnLions();
@@ -21,6 +23,7 @@ public class Lion_Pack_Script : MonoBehaviour
     void Start()
     {
         destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
+        destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class Lion_Pack_Script : MonoBehaviour
         if (rand_val > move_chance)
         {
             destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
-            //Debug.Log(rand_val);
+            destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
         }
 
         this.transform.position = Vector2.Lerp(this.transform.position, destination, lerp_amount);
