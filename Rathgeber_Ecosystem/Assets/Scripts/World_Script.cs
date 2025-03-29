@@ -19,7 +19,6 @@ public class World_Script : MonoBehaviour
     TO DO LIST:
     
     ZEBRAS:
-    - Fleeing (herd + individuals) and re-calm condition
     - Time-based lifespan + death
 
     LIONS:
@@ -40,5 +39,9 @@ public class World_Script : MonoBehaviour
     - Lifespan framework
     - Eyesight + detection
     - Constrain herds to bounding box
+
+    GENERAL:
+    - Flickr background
+    - Reattempt raycast spreads?
     */
 }

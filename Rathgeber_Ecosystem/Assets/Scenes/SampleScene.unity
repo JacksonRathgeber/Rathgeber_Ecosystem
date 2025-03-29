@@ -618,19 +618,23 @@ PrefabInstance:
       objectReference: {fileID: 2801757850485336695, guid: 72220704d64259d43a00d87264006874, type: 3}
     - target: {fileID: 7128395016268837811, guid: ce6b70e0146b4734a8d851a1bf820300, type: 3}
       propertyPath: move_dist
-      value: 20
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128395016268837811, guid: ce6b70e0146b4734a8d851a1bf820300, type: 3}
+      propertyPath: run_speed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7128395016268837811, guid: ce6b70e0146b4734a8d851a1bf820300, type: 3}
       propertyPath: lerp_amount
-      value: 0.0008
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 7128395016268837811, guid: ce6b70e0146b4734a8d851a1bf820300, type: 3}
       propertyPath: move_chance
-      value: 0.999
+      value: 0.997
       objectReference: {fileID: 0}
     - target: {fileID: 7128395016268837811, guid: ce6b70e0146b4734a8d851a1bf820300, type: 3}
       propertyPath: spawn_range
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8809821942475116354, guid: ce6b70e0146b4734a8d851a1bf820300, type: 3}
       propertyPath: m_Name
@@ -695,6 +699,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8768232793451108921, guid: d4eefac0d76139046a6171177127a1ac, type: 3}
       propertyPath: move_dist
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768232793451108921, guid: d4eefac0d76139046a6171177127a1ac, type: 3}
+      propertyPath: run_speed
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8768232793451108921, guid: d4eefac0d76139046a6171177127a1ac, type: 3}
@@ -703,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8768232793451108921, guid: d4eefac0d76139046a6171177127a1ac, type: 3}
       propertyPath: move_chance
-      value: 0.998
+      value: 0.997
       objectReference: {fileID: 0}
     - target: {fileID: 8768232793451108921, guid: d4eefac0d76139046a6171177127a1ac, type: 3}
       propertyPath: spawn_range

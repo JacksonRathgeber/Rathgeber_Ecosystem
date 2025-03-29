@@ -29,6 +29,8 @@ public class Zebra_Herd_Script : MonoBehaviour
 
         destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
         destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
+
+        state = State.Fleeing;
     }
 
     // Update is called once per frame
