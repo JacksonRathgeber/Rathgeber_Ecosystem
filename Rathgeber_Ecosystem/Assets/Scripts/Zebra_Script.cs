@@ -6,8 +6,9 @@ public class Zebra_Script : MonoBehaviour
     public GameObject lion_pack;
     public float move_dist;
     public float move_chance;
-    public float follow_lerp = 0.75f;
-    public float move_force = 1f;
+    private float follow_lerp = 0.8f;
+    private float move_force = 50f;
+    private int max_speed = 20;
 
     public Rigidbody2D rb;
     public Vector3 destination;
@@ -32,8 +33,6 @@ public class Zebra_Script : MonoBehaviour
         destination = new Vector3(move_x, move_y, 0);
 
         rb = GetComponent<Rigidbody2D>();
-
-        state = State.Fleeing;
     }
 
     // Update is called once per frame
@@ -41,6 +40,7 @@ public class Zebra_Script : MonoBehaviour
     {
         Check_For_Lions();
         Move();
+
     }
 
     private void Move()
@@ -83,18 +83,21 @@ public class Zebra_Script : MonoBehaviour
 
                 //destination = new Vector3(this.transform.position.x + move_x, this.transform.position.y + move_y, 0);
                 destination = new Vector3(move_x, move_y, 0);
-                destination = Vector3.Lerp(destination, Vector3.MoveTowards(destination, lion_pack.transform.position, move_force), 0.1f);
+                //destination = Vector3.Lerp(destination, Vector3.MoveTowards(destination, lion_pack.transform.position, -move_force), 0.1f);
 
                 break;
         }        
         rb.AddForce(new Vector2(destination.x, destination.y) * move_force);
         rb.rotation = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg - 90;//Quaternion.LookRotation(rb.linearVelocity);
+
+        Debug.DrawRay(this.transform.position, this.transform.up * Vector3.Distance(this.transform.position, destination));
+
+        destination = destination.normalized * Mathf.Min(destination.magnitude, max_speed);
+
     }
 
     public void Check_For_Lions()
     {   
-        Debug.DrawRay(this.transform.position, transform.up * 20);
-
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 10, Vector2.up);
 
         

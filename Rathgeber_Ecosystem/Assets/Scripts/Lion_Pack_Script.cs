@@ -7,7 +7,7 @@ public class Lion_Pack_Script : MonoBehaviour
     public float move_dist;
     public float move_chance;
     public float lerp_amount;
-    public int run_speed = 40;
+    private int run_speed = 40;
     public int min;
     public int max;
     public int spawn_range;
@@ -45,7 +45,7 @@ public class Lion_Pack_Script : MonoBehaviour
 
         switch (state) {
             case State.Chill:
-                if (rand_val > move_chance)
+                if (rand_val > 1 - ((1 - move_chance) / 2))
                 {
                     destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
                     destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
@@ -65,7 +65,7 @@ public class Lion_Pack_Script : MonoBehaviour
                     destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
                 }
 
-                else if (rand_val < 1 - move_chance)
+                else if (rand_val < (1 - move_chance) / 2)
                 {
                     destination = Vector2.Perpendicular(Vector2.MoveTowards(transform.position, zebra_herd.transform.position, run_speed/2));
                 }

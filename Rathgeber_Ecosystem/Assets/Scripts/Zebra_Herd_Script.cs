@@ -7,7 +7,7 @@ public class Zebra_Herd_Script : MonoBehaviour
     public float move_dist;
     public float move_chance;
     public float lerp_amount;
-    public int run_speed = 40;
+    private int run_speed = 40;
     public int min;
     public int max;
     public int spawn_range;
@@ -59,18 +59,18 @@ public class Zebra_Herd_Script : MonoBehaviour
 
             case State.Fleeing:
 
-                if (rand_val > 1 - ((1-move_chance) * 4))
+                if (rand_val > 1 - ((1 - move_chance) / 2))
+                {
+                    destination = Vector2.Perpendicular(Vector2.MoveTowards(transform.position, lion_pack.transform.position, -run_speed));
+                }
+
+                else if (rand_val > 1 - ((1-move_chance) * 4))
                 {
                     destination = Vector2.MoveTowards(transform.position, lion_pack.transform.position, -run_speed);
                     destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
                 }
 
-                if (rand_val > move_chance)
-                {
-                    destination = Vector2.Perpendicular(Vector2.MoveTowards(transform.position, lion_pack.transform.position, -run_speed));
-                }
-
-                if (rand_val < 1 - move_chance)
+                else if (rand_val < (1 - move_chance) / 2)
                 {
                     destination = Vector2.Perpendicular(Vector2.MoveTowards(transform.position, lion_pack.transform.position, run_speed));
                 }
@@ -80,6 +80,7 @@ public class Zebra_Herd_Script : MonoBehaviour
 
                 break;
         }
+
     }
 
     public void SpawnZebras()

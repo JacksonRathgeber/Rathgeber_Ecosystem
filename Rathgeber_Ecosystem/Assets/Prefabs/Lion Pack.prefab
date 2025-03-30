@@ -100,3 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d03f821ed22e948aa8e8e6572b1eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lion: {fileID: 2801757850485336695, guid: 72220704d64259d43a00d87264006874, type: 3}
+  zebra_herd: {fileID: 0}
+  move_dist: 20
+  move_chance: 0.997
+  lerp_amount: 0.002
+  run_speed: 40
+  min: 5
+  max: 10
+  spawn_range: 4
+  destination: {x: 0, y: 0}
+  state: 0

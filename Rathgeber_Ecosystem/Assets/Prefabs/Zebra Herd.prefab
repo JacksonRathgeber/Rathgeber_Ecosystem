@@ -101,10 +101,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zebra: {fileID: 6306023839233417459, guid: cd40af8b11977544999d38bdbf5f494c, type: 3}
-  move_dist: 15
-  move_chance: 0.995
-  lerp_amount: 0.0004
+  lion_pack: {fileID: 0}
+  move_dist: 20
+  move_chance: 0.997
+  lerp_amount: 0.002
+  run_speed: 50
   min: 10
   max: 20
-  spawn_range: 8
+  spawn_range: 6
   destination: {x: 0, y: 0}
+  state: 0
