@@ -8,7 +8,8 @@ public class Zebra_Script : MonoBehaviour
     public float move_chance;
     private float follow_lerp = 0.8f;
     private float move_force = 50f;
-    private int max_speed = 20;
+    public int max_speed;
+    //public bool being_targeted = false;
 
     public Rigidbody2D rb;
     public Vector3 destination;
@@ -73,9 +74,9 @@ public class Zebra_Script : MonoBehaviour
 
             case State.Fleeing:
 
-                if (rand_val > 1 - ((1 - move_chance) * 4))
+                if (rand_val > 1 - ((1 - move_chance) * 2))
                 {
-                    move_x = Mathf.Lerp(Random.Range(-move_dist*2, move_dist*2),
+                    move_x = Mathf.Lerp(Random.Range(-move_dist, move_dist),
                         herd.transform.position.x - this.transform.position.x, 1 - ((1 - follow_lerp) / 2));
                     move_y = Mathf.Lerp(Random.Range(-move_dist, move_dist),
                         herd.transform.position.y - this.transform.position.y, 1 - ((1 - follow_lerp) / 2));
@@ -90,7 +91,7 @@ public class Zebra_Script : MonoBehaviour
         rb.AddForce(new Vector2(destination.x, destination.y) * move_force);
         rb.rotation = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg - 90;//Quaternion.LookRotation(rb.linearVelocity);
 
-        Debug.DrawRay(this.transform.position, this.transform.up * Vector3.Distance(this.transform.position, destination));
+        //Debug.DrawRay(this.transform.position, this.transform.up * Vector3.Distance(this.transform.position, destination));
 
         destination = destination.normalized * Mathf.Min(destination.magnitude, max_speed);
 

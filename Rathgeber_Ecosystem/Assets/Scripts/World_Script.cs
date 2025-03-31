@@ -37,11 +37,9 @@ public class World_Script : MonoBehaviour
     - Sex update
     - Respawn if group wipe
     - Lifespan framework
-    - Eyesight + detection
     - Constrain herds to bounding box
 
     GENERAL:
-    - Flickr background
     - Reattempt raycast spreads?
     - Exit panicked states
     */

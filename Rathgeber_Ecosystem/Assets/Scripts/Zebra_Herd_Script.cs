@@ -28,7 +28,9 @@ public class Zebra_Herd_Script : MonoBehaviour
         lion_pack = GameObject.FindWithTag("Pack");
 
         destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
-        destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
+        //destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
+        destination = Vector2.Lerp(destination, Vector2.Perpendicular(Vector2.MoveTowards(destination, Vector2.zero, 
+            Mathf.Pow(Vector2.Distance(destination, Vector2.zero), 2))), 0.5f);
 
         state = State.Fleeing;
     }
@@ -50,7 +52,8 @@ public class Zebra_Herd_Script : MonoBehaviour
                 if (rand_val > move_chance)
                 {
                     destination = new Vector2(this.transform.position.x + Random.Range(-move_dist, move_dist), this.transform.position.y + Random.Range(-move_dist, move_dist));
-                    destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
+                    destination = Vector2.Lerp(destination, Vector2.Perpendicular(Vector2.MoveTowards(destination, Vector2.zero,
+                        Mathf.Pow(Vector2.Distance(destination, Vector2.zero), 2))), 0.5f);
                 }
 
                 this.transform.position = Vector2.Lerp(this.transform.position, destination, lerp_amount);
@@ -67,7 +70,8 @@ public class Zebra_Herd_Script : MonoBehaviour
                 else if (rand_val > 1 - ((1-move_chance) * 4))
                 {
                     destination = Vector2.MoveTowards(transform.position, lion_pack.transform.position, -run_speed);
-                    destination = Vector2.Lerp(destination, Vector2.zero, 0.1f);
+                    destination = Vector2.Lerp(destination, Vector2.Perpendicular(Vector2.MoveTowards(destination, Vector2.zero,
+                        Mathf.Pow(Vector2.Distance(destination, Vector2.zero), 2))), 0.5f);
                 }
 
                 else if (rand_val < (1 - move_chance) / 2)
